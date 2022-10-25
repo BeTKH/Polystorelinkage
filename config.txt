@@ -1,0 +1,25 @@
+[general]
+processCount = 4
+entryLimit = 5000
+inclusion.dependency.quota = 0.5
+value.match.quota = 0.5
+
+[database]
+mongodb.connection.string = mongodb+srv://beck_tkh:1433@mongodbunireg-dfg.hevckkf.mongodb.net/test
+
+mysql.host = localhost
+mysql.user = root
+mysql.password = jsks@1433
+mysql.database = mysql
+
+
+neo4j.uri = bolt://localhost:7687
+neo4j.user = neo4j
+neo4j.password = 12345
+
+[text_comparision]
+levMaxLen = 4
+synonyms = []
+
+[types]
+typegroups=[["str", "varchar\\(\\d*\\)"],["int","bigint"]]
