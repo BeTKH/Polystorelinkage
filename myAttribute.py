@@ -8,6 +8,7 @@ class myAttribute:
         self.linkedTable = None
 
     # Wert hinzufügen
+    # add value
     def addValue(self, value):
         if not value in self.values and value != None:
             self.values.append(value)
@@ -18,5 +19,6 @@ class myAttribute:
                 self.values.sort()
 
     # Tabelle anfügen (bei nested Objects), welche Attribute untergeordnete Attribute und Werte hält
+    # Append table (on nested objects) holding attributes, child attributes and values
     def attachTable(self, table):
         self.linkedTable = table

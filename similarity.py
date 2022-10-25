@@ -35,6 +35,7 @@ def getTableDatabaseSimilarity(table1, database1, configDic = {}):
     return getDatabaseSimilarities(database1, database2, configDic, False)
 
 # sucht nach Überschneidungen innerhalb von 2 Datenbanken
+# searches for overlaps within 2 databases
 def getDatabaseSimilarities(database1, database2, configDic = {}, loadTables = True):
     start = time.time()
     config.init()
@@ -44,6 +45,7 @@ def getDatabaseSimilarities(database1, database2, configDic = {}, loadTables = T
         database2.loadTables()
     
     #Inclusiondependencies zwischen allen Tabellen finden
+    #Find inclusiondependencies between all tables
     inclusionDependencies = {}
 
     for table1 in database1.tables:
@@ -57,11 +59,13 @@ def getDatabaseSimilarities(database1, database2, configDic = {}, loadTables = T
 
     #init a matrix that compares every row of the databases with 1s
     #Initialisierung einer Matrix bei der die Gleichhalt aller Attribute aufeinander festgehalten wird Struktur: Tabelle 1 von Datenbank 1->Tabelle 2 von Datenbank2->Attribut von Tabelle 1 -> Attribut von Tabelle 2
+    #Initialization of a matrix in which the equality of all attributes is recorded Structure: Table 1 of database 1 -> table 2 of database 2 -> attribute of table 1 -> attribute of table 2
     typeSimilarityMatrix=initSimilarityMatrix(database1,database2)
 
 
     #compare types
     #Typen werden verglichen und Ergebnis in Matrix festgehalten
+    #Types are compared and the result is recorded in the matrix
     for table1 in database1.tables:
         for table2 in database2.tables:
             compareAttributesTypes(table1, table2, typeSimilarityMatrix)
@@ -72,6 +76,7 @@ def getDatabaseSimilarities(database1, database2, configDic = {}, loadTables = T
     nameSimilarityMatrix=initSimilarityMatrix(database1,database2)
     #compare attributnames
     #Vergleich der Namen von Attributen. Ähnlichkeit im Intervall von [0,1]. Wird mit Matrix multipliziert.
+    #Comparison of the names of attributes. Similarity in the interval of [0,1]. Is multiplied by matrix.
     for table1 in database1.tables:
         for table2 in database2.tables:
             compareAttributesNames(table1, table2, nameSimilarityMatrix)
@@ -82,6 +87,7 @@ def getDatabaseSimilarities(database1, database2, configDic = {}, loadTables = T
     valueSimilarityMatrix = initSimilarityMatrix(database1,database2)
     #compare AttributeValues
     #Werte werden Verglichen. Ähnlichkeit im Intervall [0,1] Wird mit Matrix multipliziert.
+    #Values ​​are compared. Similarity in interval [0,1] Multiplied by matrix.
     for table1 in database1.tables:
         for table2 in database2.tables:
             compareAttributeValues(table1, table2, valueSimilarityMatrix)
@@ -95,19 +101,19 @@ def getDatabaseSimilarities(database1, database2, configDic = {}, loadTables = T
     print(end - start)
     printMapping(finalSimilarityMatrix)
     print('_______________________________________________________________')
-    print("nach Name")
+    print("last name")
     print('_______________________________________________________________')
     print(getInterModelLinkage(database1, database2, nameSimilarityMatrix))
     print('_______________________________________________________________')
-    print("nach Wert")
+    print("by value")
     print('_______________________________________________________________')
     print(getInterModelLinkage(database1, database2, valueSimilarityMatrix))
     print('_______________________________________________________________')
-    print("nach seltsamer Formel")
+    print("according to a strange formula")
     print('_______________________________________________________________')
     print(getInterModelLinkage(database1, database2, finalSimilarityMatrix))
     print('_______________________________________________________________')
-    print("Inklusionsabhängigkeiten")
+    print("inclusion dependencies")
     print('_______________________________________________________________')
     print(inclusionDependencies)
     print('_______________________________________________________________')
@@ -116,6 +122,8 @@ def getDatabaseSimilarities(database1, database2, configDic = {}, loadTables = T
 #returns matrix(dicts) that compares all attributes of both collections with 1s
 # initialisiert für 2 Datenbanken eine Matrix, die die Ähnlichkeiten der beiden beschreibt mit Werten im Intervall [0,1] und initialisiert sie mit 1
 # Struktur ist ein dic mit similarityMatrix[Tabelle 1 von Datenbank 1][Tabelle 2 von Datenbank 2][Attribut von Tabelle 1][Attribut von Tabelle 2]
+# initializes a matrix for 2 databases that describes the similarities between the two with values ​​in the interval [0,1] and initializes them with 1
+# struct is a dic with similarityMatrix[table 1 of database 1][table 2 of database 2][attribute of table 1][attribute of table 2]
 def initSimilarityMatrix(database1,database2):
     similarityMatrix= {}
     for table1 in database1.tables:
@@ -134,6 +142,7 @@ def initSimilarityMatrix(database1,database2):
 
 #compares types of 2 collections and updates similarityMatrix
 #vergleicht die Typen von 2 Tabellen und trägt 1 in die Matrix ein bei gleicher Äquivalenzklasse, 0 sonst
+#compares the types of 2 tables and enters 1 in the matrix if the equivalence class is the same, 0 otherwise
 def compareAttributesTypes(table1, table2, similarityMatrix):
     for attribute1 in table1.attributes:
         for attribute2 in table2.attributes:
@@ -144,6 +153,7 @@ def compareAttributesTypes(table1, table2, similarityMatrix):
 
 #compares property names of 2 collections and updates similarityMatrix
 #Vergleicht die Namen der Attribute von 2 Tabellen. Ähnlichkeit liegt zwischen 0 und 1.
+#Compares the names of the attributes of 2 tables. Similarity is between 0 and 1.
 def compareAttributesNames(table1, table2, similarityMatrix):
     updatableAtributes=[]
     for attribute1 in table1.attributes:
@@ -160,6 +170,7 @@ def compareAttributesNames(table1, table2, similarityMatrix):
 
 #compares values of 2 Collection and updates similarityMatrix
 #vergleicht die Werte der Attribute von 2 Tabellen und multipliziert Ergebnis im Bereich von [0,1] mit Eintrag in Matrix
+#compares the values ​​of the attributes of 2 tables and multiplies the result in the range of [0,1] by the entry in the matrix
 def compareAttributeValues(table1, table2, similarityMatrix):
 
     toProcessList = []
@@ -182,6 +193,7 @@ def compareAttributeValues(table1, table2, similarityMatrix):
         similarityMatrix[table1.name][table2.name][toProcessNames[i][0]].update({toProcessNames[i][1]:similarityMatrix[table1.name][table2.name][toProcessNames[i][0]][toProcessNames[i][1]]*result[i]})
 
 #ermittelt inclusion dependencies zwischen 2 Tabellen [[tabelle 1 ⊆ tablle 2],[tabelle 1 ⊇ tabelle 2]]
+# determines inclusion dependencies between 2 tables [[table 1 ⊆ table 2],[table 1 ⊇ table 2]]
 def getInclusiondependencies(table1, table2):
     result = [[],[]]
     table1Inclusions = {}
@@ -225,6 +237,7 @@ def getInclusiondependencies(table1, table2):
     return result
 
 # generiert aus einelementigen inclusiondependencies alle k-elementigen
+# generates all k-element from single-element inclusiondependencies
 def getAllInclusions(inclusions):
     result=[]
     head = inclusions[0]
@@ -240,6 +253,7 @@ def getAllInclusions(inclusions):
     return result
 
 #entfernt Duplikate aus einer Liste
+#removes duplicates from a list
 def removeDuplicates(list):
     result = []
     for element in list:
@@ -248,6 +262,7 @@ def removeDuplicates(list):
     return result
 
 #gibt alle einelementigen inclusion dependencies zwischen 2 Entitäten zurück
+#returns all single-element inclusion dependencies between 2 entities
 def getEntityInclusion(entity1, entity2):
     result=[]
     for value1 in entity1:
@@ -355,6 +370,7 @@ def getNeo4JDatabase(uri, user, password):
     return GraphDatabase.driver(uri, auth=(user, password))
 
 #stellt Verbindung zur Datenbank her und erstellt Datenbankobjekt vom Typ neo4j
+#connects to the database and creates a database object of type neo4j
 def get_Neo4jDatabase(dbName):
     config.init()
     neo4jdatabase = getNeo4JDatabase(config.neo4j_uri, config.neo4j_user, config.neo4j_password)
