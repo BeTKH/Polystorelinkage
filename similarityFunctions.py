@@ -19,6 +19,7 @@ def get_wordnet_pos(word): #https://www.machinelearningplus.com/nlp/lemmatizatio
     return tag_dict.get(tag, wordnet.NOUN)
 
 #gibt wahr zurück, wenn Typ 1 und Typ 2 äquivalent sind
+#returns true if type 1 and type 2 are equivalent
 def compareTypes(type1, type2):
     typeDict = config.typeDict
     typeLists = config.typeLists
@@ -59,6 +60,7 @@ def isTypeOdered(Type):
 
 #returns similarity of 2 values
 #Vergleicht 2 Werte, Ergebnis im Bereich [0,1]
+#Compares 2 values, result in range [0,1]
 def compareValues(value1, value2):
     if (type(value1) == list or type(value1) == tuple) and (type(value2) == list or type(value2) == tuple):
         return getIterableSimilarities(value1, value2)
@@ -108,6 +110,7 @@ def compareLists(list1, list2):
         return matches/min(len(list1), len(list2))
 
 #Vergleich von 2 Strings durch Hamming und Leventheindistance
+#Comparison of 2 strings by Hamming and Leventheindistance
 def getWordSimilarity(word1, word2):
     result = 0;
     if len(word1) == len(word2):
@@ -120,6 +123,7 @@ def getWordSimilarity(word1, word2):
     return result
 
 # Erweiterung durch lemmartization
+# Extension through lemmartization
 def getExtendedWordSimilarity(word1, word2):
     config.init()
     lemmatizer = WordNetLemmatizer()
@@ -136,6 +140,7 @@ def getExtendedWordSimilarity(word1, word2):
     return getWordSimilarity(word1_lemma, word2_lemma)
 
 # Vergleich von sonstigen Werten
+# Comparison of other values
 def getDefaultSimilarity(value1, value2):
     if value1 == value2:
         return 1
@@ -161,6 +166,7 @@ def getIterableSimilarities(list1, list2):
 
 #Levensteindistance of two words
 #Levenstheindistanz zweier strings
+#Levenstheindistance of two strings
 def lev(word1, word2):
     if len(word1) == 0:
         return len(word2);

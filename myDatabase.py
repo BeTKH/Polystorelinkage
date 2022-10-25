@@ -24,6 +24,7 @@ class myDatabase:
         self.client = client
 
     # ruft jeweilige Funktion zum Laden der Tabellen des Datenbanktyps auf
+    # calls respective function for loading tables of database type
     def loadTables(self):
         if self.dbType == "mysql":
             self.tables = self.loadMySQLTables()
@@ -40,6 +41,7 @@ class myDatabase:
         print("unsopported database: " + self.dbType)
 
     # Lädt Tabellen für mySQL
+    # Load tables for mySQL
     def loadMySQLTables(self):
         cursor = self.database.cursor()
         cursor.execute("show tables")
@@ -67,6 +69,7 @@ class myDatabase:
         return tables
 
     # Lädt Tabellen für mongoDB aus Collections
+    # Load tables for mongoDB from Collections
     def newLoadMongoDBTables(self):
         dbCollectionNames = self.database.list_collection_names()
         collections = []
@@ -86,6 +89,7 @@ class myDatabase:
         return collections
 
     #lädt Attribute aus Liste von MongoDB Dokumenten
+    #loads attributes from list of MongoDB documents
     def mongoLoadAttributes(self, documents):
         attributes = {}
         objects = {}
@@ -113,6 +117,7 @@ class myDatabase:
         return list(attributes.values()), tables
 
     #lädt Tabellen aus neo4j Knoten unter gleichem Label
+    #loads tables from neo4j nodes under the same label
     def loadNeo4jTables(self):
         labels = self.database.session().run("CALL db.labels()").value()
         tables = {}
@@ -149,6 +154,7 @@ class myDatabase:
         return list(tables.values())
 
     # ermittelt verbundene Knoten mit Beziehung node-->neighbournode
+    # find connected nodes with relation node-->neighbournode
     def getNeo4jConnectedNodes(self, node):
         string = "MATCH (n)-->(m) Where "
         items = node.items()
