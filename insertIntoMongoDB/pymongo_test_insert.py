@@ -1,9 +1,9 @@
-from connection import get_database
+from connection import getMongoDatabase
 from dateutil import parser
 
-dbname = get_database()
+dbname = getMongoDatabase()
 
-collection_name = dbname["user_1_items"]
+collection_name = dbname["user_item1"]
 
 
 item_1 = {
@@ -41,4 +41,10 @@ item_3 = {
 }
 
 #use the insert_one() method to insert a single document.
-collection_name.insert_one(item_3)
+#collection_name.insert_one(item_3)
+
+
+collection_name2 = dbname["user_item3"]
+response = dbname.drop_collection(collection_name2)
+
+print ("\n", "drop_collection() response:", response)

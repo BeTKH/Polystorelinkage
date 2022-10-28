@@ -5,7 +5,7 @@ inclusion.dependency.quota = 0.5
 value.match.quota = 0.5
 
 [database]
-mongodb.connection.string = mongodb+srv://beck_tkh:1433@cluster0.xjbdvhx.mongodb.net/test
+mongodb.connection.string = mongodb+srv://beck_tkh:1433@cluster0.ohvthlf.mongodb.net/test
 
 
 mysql.host = localhost
@@ -16,7 +16,7 @@ mysql.database = mysql
 
 neo4j.uri = bolt://localhost:7687
 neo4j.user = neo4j
-neo4j.password = 12345
+neo4j.password = 1234
 
 [text_comparision]
 levMaxLen = 4
