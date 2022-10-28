@@ -1,10 +1,12 @@
-//Query relations
-MATCH (KS:Person)-[:IS_MARRIED_TO]-(wife), 
-(KS:Person)-[:WORKS_AT]-(comp),
-(KS:Person)-[:KNOWS]-(friend),
 
-(friend)-[:WORKS_AT]-(comp2)
+MATCH (ks:person)-[:IS_MARRIED_TO]-(wife), 
+(ks:person)-[:WORKS_AT]-(comp),
+(ks:person)-[:FREIND]-(friend),
+(friend)-[:WORKED_AT]-(comp2),
+(friend)-[:STUDIED_AT]-(uni),
+(wife)-[:KNOWS]-(friend), 
+(friend)-[:LIVED]-(city)
 
-WHERE KS.Name = "Kevan" 
+WHERE ks.name = "Kevin"
 
-RETURN KS, wife, comp,comp2, friend;
+RETURN ks, wife, comp, comp2, friend, uni, city;
