@@ -1,7 +1,6 @@
-from http import client
-from pymongo import MongoClient
+from neo4j import GraphDatabase
 
-def getMongoDatabase():
+def getNeo4jDatabase():
 
     # mongodb+srv://<username>:<password>@mongodbunireg-dfg.hevckkf.mongodb.net/test  username: beck_tkh password: 1433
 
