@@ -47,7 +47,7 @@ def create_person_node(tx, name):
     tx.run("CREATE (a:Person {name: $name})", name=name)
 
 if __name__ == "__main__":
-    database = getNeo4JDatabase("bolt://localhost:7687", "python", "12345")
+    database = getNeo4JDatabase("bolt://localhost:7687", "neo4j", "1234")
     andy = {}
     andy.update({"firstname":"Andy"})
     andy.update({"surname":"Bandy"})

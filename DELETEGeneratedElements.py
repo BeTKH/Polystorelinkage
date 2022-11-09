@@ -28,6 +28,6 @@ def getNeo4JDatabase(uri, user, password):
 def closeNeo4JDatabase(database):
     database.close()
 
-neo4jdatabase = getNeo4JDatabase("bolt://localhost:7687", "python", "12345")
+neo4jdatabase = getNeo4JDatabase("bolt://localhost:7687", "neo4j", "1234")
 neo4jdatabase.session().run("MATCH (n) DETACH DELETE n")
 closeNeo4JDatabase(neo4jdatabase)
