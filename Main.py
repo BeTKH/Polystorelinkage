@@ -23,14 +23,19 @@ if __name__ == "__main__":
     db3 = similarity.get_MySQLDatabase("mysql")
     
    
-    print(configDic)
+    print("\nConfiguration dictionary is:", configDic)
     
     #db.loadTables()
     #db2.loadTables()
     #configDic.update({"levMaxLen": 2})
     #similarity.getSimilarities(db.tables[1],db)
-    #print(similarity.getDatabaseSimilarities(db1, db2, configDic))
+    print("\nSimilarity between neo4j and mongo db is:")
+    print(similarity.getDatabaseSimilarities(db1, db2, configDic))
+    print("\n\n")
+
+    print("\nSimilarity between neo4j and mysql db is:")
     print(similarity.getDatabaseSimilarities(db1, db3, configDic))
+    print("\n\n")
 
     
     
