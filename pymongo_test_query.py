@@ -13,6 +13,8 @@ from pandas import DataFrame
 # convert the dictionary objects to dataframe
 items_df = DataFrame(item_details)
 
+print("\nitem details: ",item_details, "\n")
+
 # see the magic
 print(items_df)
 

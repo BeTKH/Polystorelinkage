@@ -101,9 +101,9 @@ for i in range(random.randrange(80, 160)):
 
 mydb = mysql.connector.connect(
   host="localhost",
-  user="python",
-  password="1234",
-  database="main_database"
+  user="root",
+  password="jsks@1433",    # sqlLite pass
+  database="mysql"
 )
 
 mycursor = mydb.cursor()
@@ -171,7 +171,7 @@ for i in range(50):
         rating = {"rating_id": i, "username": username, "product": product, "rating": rating}
         database["ratings"].insert_one(rating)
 
-neo4jdatabase = getNeo4JDatabase("bolt://localhost:7687", "python", "12345")
+neo4jdatabase = getNeo4JDatabase("bolt://localhost:7687", "neo4j", "1234")
 
 for account in accounts:
     userAccount={"username": account.username, "firstname": account.firstname, "surname": account.surname}

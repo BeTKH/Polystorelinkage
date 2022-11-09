@@ -5,8 +5,7 @@ inclusion.dependency.quota = 0.5
 value.match.quota = 0.5
 
 [database]
-mongodb.connection.string = mongodb+srv://beck_tkh:1433@cluster0.ohvthlf.mongodb.net/test
-
+mongodb.connection.string = mongodb+srv://beck_tkh:1433@cluster0.mdd3cai.mongodb.net/test
 
 mysql.host = localhost
 mysql.user = root
