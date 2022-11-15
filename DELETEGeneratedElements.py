@@ -9,7 +9,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="python",
   password="1234",
-  database="main_database"
+  database="main_database"    # "main_database" is name of the realtional DB in the mysql 
 )
 
 mycursor = mydb.cursor()
