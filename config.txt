@@ -9,8 +9,8 @@ mongodb.connection.string = mongodb://localhost:27017
 
 mysql.host = localhost
 mysql.user = root
-mysql.password = jsks@1433
-mysql.database = mysql
+mysql.password = test1234
+mysql.database = mysqlbds
 
 
 neo4j.uri = bolt://localhost:7687

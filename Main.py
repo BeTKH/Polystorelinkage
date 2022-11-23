@@ -17,10 +17,12 @@ if __name__ == "__main__":
     for element in groupList:
         configDic.update({element[0]:element[1]})
     
+
+    # pass name of connection
     
     db1 = similarity.get_Neo4jDatabase("neo4j")
-    db2 = similarity.get_MongoDatabase("OnlineStore")
-    db3 = similarity.get_MySQLDatabase("mysql")
+    db2 = similarity.get_MongoDatabase("bookstore")
+    db3 = similarity.get_MySQLDatabase("mysql")   
     
    
     print("\nConfiguration dictionary is:", configDic)
@@ -29,12 +31,16 @@ if __name__ == "__main__":
     #db2.loadTables()
     #configDic.update({"levMaxLen": 2})
     #similarity.getSimilarities(db.tables[1],db)
-    print("\nSimilarity between neo4j and mongo db is:")
-    print(similarity.getDatabaseSimilarities(db1, db2, configDic))
-    print("\n\n")
+    #print("\nSimilarity between neo4j and mongo db is:")
+    #print(similarity.getDatabaseSimilarities(db1, db2, configDic))
+    #print("\n\n")
 
-    print("\nSimilarity between neo4j and mysql db is:")
+    #print("\nSimilarity between neo4j and mysql db is:")
     print(similarity.getDatabaseSimilarities(db1, db3, configDic))
+    #print("\n\n")
+
+    print("\nSimilarity between mongodb and mysql db is:")
+    print(similarity.getDatabaseSimilarities(db2, db3, configDic))
     print("\n\n")
 
     
