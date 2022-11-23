@@ -3,12 +3,12 @@ import mysql.connector
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="jsks@1433"
+  password="test1234"
 )
 
 print(mydb)
 
-# creating a DB named 'mysql'
+# creating SCHEMA named 'mysqldbs'
 
 mycursor = mydb.cursor()
-mycursor.execute("CREATE DATABASE mysqlDB")
+mycursor.execute("CREATE DATABASE mysqldbs")  # creates schema with Tables, Views, Stored Procedures and Functions 

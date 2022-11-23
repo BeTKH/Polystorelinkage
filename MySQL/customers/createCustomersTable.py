@@ -3,8 +3,8 @@ import mysql.connector
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="jsks@1433", 
-  database="mysqlDB"          # connect to  "mysqlDB" automatically
+  password="test1234", 
+  database="mysqldbs"          # connect to  "mysqldbs" automatically
 )
 
 mycursor = mydb.cursor()
@@ -12,3 +12,4 @@ mycursor = mydb.cursor()
 
 # create customers table 
 mycursor.execute("CREATE TABLE customers (Customer_ID INT AUTO_INCREMENT PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255))")
+
