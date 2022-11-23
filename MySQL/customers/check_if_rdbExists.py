@@ -3,8 +3,8 @@ import mysql.connector
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="jsks@1433",
-  database="mysqlDB"  # access "mysql" database when making the connection   --- here mysql is the name of the DB 
+  password="test1234",
+  database="mysqldbs"  # specify the name of schema to make dircet connection  
 )
 
 

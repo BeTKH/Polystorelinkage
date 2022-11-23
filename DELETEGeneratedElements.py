@@ -8,8 +8,8 @@ config.init()
 mydb = mysql.connector.connect(
   host="localhost",
   user="python",
-  password="1234",
-  database="main_database"    # "main_database" is name of the realtional DB in the mysql 
+  password="test1234",
+  database="mysqldbs"    # "mysqldbs" is name of the realtional DB in the mysql 
 )
 
 mycursor = mydb.cursor()
