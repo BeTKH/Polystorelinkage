@@ -26,5 +26,3 @@ MySQL Setup
 2. create MySQL connection with
 - connection name: "mysql"
 - password: "test1234"
-
-Update all login details on Config.txt 
