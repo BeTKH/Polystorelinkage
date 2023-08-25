@@ -6,6 +6,7 @@ import similarityFunctions as sf
 import config
 from neo4j import GraphDatabase
 import mysql.connector
+
 from myDatabase import myDatabase
 from myTable import myTable
 from pymongo import MongoClient
